@@ -1,7 +1,7 @@
 # OpenSkill
 OpenSkill is a pure Lua skill rating system for the [Defold](https://www.defold.com) game engine. It is a fork of [https://github.com/bstummer/openskill.lua](https://github.com/bstummer/openskill.lua) adapted to Defold.
 
-Although this is an extension for the Defold platform, the library should work with any pure Lua environment.
+Although this is an extension for Defold, the library should also work with any pure Lua environment.
 
 # Installation
 You can use OpenSkill in your own project by adding this project as a [Defold library dependency](http://www.defold.com/manuals/libraries/). Open your game.project file and in the dependencies field under project add:
