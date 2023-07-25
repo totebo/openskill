@@ -14,3 +14,5 @@ input_method = HiddenInputField
 [project]
 title = OpenSkill
 
+[library]
+include_dirs = OpenSkill
