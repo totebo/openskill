@@ -1,8 +1,6 @@
 --Based on errcw/gaussian commit 40
 --https://www.npmjs.com/package/gaussian
 
---type n = number
-
 local function erfc(x)
 	local z = math.abs(x)
 	local t = 1 / (1 + z / 2)

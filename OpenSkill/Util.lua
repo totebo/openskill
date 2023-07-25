@@ -1,22 +1,12 @@
 local constants = require("OpenSkill.Constants")
 local util = {}
 
-function util.table_find(t, f) -- find element v of l satisfying f(v)
-
-	--[[
-	local t = {"a", "b", "c", "d", "e"}
-	print(table.find(t, "d")) --> 4
-	print(table.find(t, "z")) --> nil, because z is not in the table
-	print(table.find(t, "b", 3)) --> nil, because b appears before index 3
-	--]]
-
-
+function util.table_find(t, f)
 	for i=1, #t do
 		if f == t[i] then
 			return i
 		end
 	end
-	
 end
 
 function util.score(q, i)

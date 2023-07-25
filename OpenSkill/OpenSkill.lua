@@ -7,6 +7,8 @@ Based on philihp/openskill.js commit 291
 
 Ported to Lua & improved by Vaschex
 
+Ported in turn to Defold by Totebo 
+
 ]]
 
 local module = {}

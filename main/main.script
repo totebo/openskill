@@ -7,7 +7,6 @@ function init(self)
 	local b1 = OpenSkill.Rating(nil, 2.421) --> {mu = 25, sigma = 2.421}
 	local b2 = OpenSkill.Rating(25.188, 6.211) --> {mu = 25.188, sigma = 6.211}
 
-	local skill_rating = OpenSkill.Ordinal(a1) --> 0
 	OpenSkill.Rate({{a1, a2}, {b1, b2}})
 	
 	local a = OpenSkill.Rating()
@@ -26,7 +25,18 @@ function init(self)
 	OpenSkill.Rate({{a}, {b}, {c}, {d}}, {
 		model = "ThurstoneMosteller"
 	})
+
+	local player_a = OpenSkill.Rating()
+	local player_b = OpenSkill.Rating()
 	
+	for i=1, 10 do 
+
+		OpenSkill.Rate({{player_a}, {player_b}}) 
+		pprint("skill_rating_player_a", player_a)
+		pprint("skill_rating_player_b", player_b)
+
+	end
+
 end
 
 function final(self)

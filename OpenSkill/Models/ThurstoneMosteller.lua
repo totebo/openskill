@@ -13,9 +13,7 @@ return function(game_, options)
 		local iOmega, iDelta = 0, 0
 		for q, qTeamRating in ipairs(teamRatings) do
 			local qMu, qSigmaSq, qTeam, qRank = unpack(qTeamRating)
-			if i == q then
-				-- Continue
-			else
+			if i ~= q then
 				local ciq = math.sqrt(iSigmaSq + qSigmaSq + twoBetaSq)
 				local deltaMu = (iMu - qMu) / ciq
 				local sigSqToCiq = iSigmaSq / ciq
