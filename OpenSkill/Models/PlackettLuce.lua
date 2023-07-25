@@ -1,5 +1,5 @@
-local util = require(script.Parent.Parent.Util)
-local constants = require(script.Parent.Parent.Constants)
+local util = require("OpenSkill.Util")
+local constants = require("OpenSkill.Constants")
 
 return function(game_, options)
 	options = options or {}
@@ -17,11 +17,11 @@ return function(game_, options)
 			if v[4] <= iRank then
 				local quotient = iMuOverCe / sumQ[q]
 				if i == q then
-					omegaSum += (1 - quotient) / a[q]
+					omegaSum = omegaSum + (1 - quotient) / a[q]
 				else
-					omegaSum += -quotient / a[q]
+					omegaSum = omegaSum + -quotient / a[q]
 				end
-				deltaSum += (quotient * (1 - quotient)) / a[q]
+				deltaSum = deltaSum + (quotient * (1 - quotient)) / a[q]
 			end
 		end	
 		local iGamma = util.gamma(c, iSigmaSq, options)

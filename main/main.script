@@ -1,0 +1,90 @@
+local OpenSkill = require("OpenSkill.OpenSkill")
+
+function init(self)
+
+	local a1 = OpenSkill.Rating() --> {mu = 25, sigma = 8.333333333333334}
+	local a2 = OpenSkill.Rating(32.444) --> {mu = 32.444, sigma = 10.81466666666667}
+	local b1 = OpenSkill.Rating(nil, 2.421) --> {mu = 25, sigma = 2.421}
+	local b2 = OpenSkill.Rating(25.188, 6.211) --> {mu = 25.188, sigma = 6.211}
+
+	local skill_rating = OpenSkill.Ordinal(a1) --> 0
+
+	print("skill_rating", skill_rating)
+
+	OpenSkill.Rate({{a1, a2}, {b1, b2}})
+	
+	local skill_rating = OpenSkill.Ordinal(a1) --> 2.3245624871094
+	print("skill_rating", skill_rating)
+
+	local a = OpenSkill.Rating()
+	local b = OpenSkill.Rating()
+	local c = OpenSkill.Rating()
+	local d = OpenSkill.Rating()
+
+	local skill_rating = OpenSkill.Ordinal(a) --> 2.3245624871094
+	print("skill_rating", skill_rating)
+	
+	OpenSkill.Rate({{a}, {b}, {c}, {d}}, { --4 teams consisting of 1 player
+		rank = {4, 1, 3, 2}
+	})
+
+	local skill_rating = OpenSkill.Ordinal(a) --> 2.3245624871094
+	print("skill_rating", skill_rating)
+	
+	OpenSkill.Rate({{a}, {b}, {c}, {d}}, {
+		score = {37, 19, 37, 42}
+	})
+
+	local skill_rating = OpenSkill.Ordinal(a) --> 2.3245624871094
+	print("skill_rating", skill_rating)
+
+	OpenSkill.Rate({{a}, {b}, {c}, {d}}, {
+		model = "ThurstoneMosteller"
+	})
+	
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function fixed_update(self, dt)
+	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
+	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
+	-- Physics section of game.project
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end

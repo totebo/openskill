@@ -1,5 +1,23 @@
-local constants = require(script.Parent.Constants)
+local constants = require("OpenSkill.Constants")
 local util = {}
+
+function util.table_find(t, f) -- find element v of l satisfying f(v)
+
+	--[[
+	local t = {"a", "b", "c", "d", "e"}
+	print(table.find(t, "d")) --> 4
+	print(table.find(t, "z")) --> nil, because z is not in the table
+	print(table.find(t, "b", 3)) --> nil, because b appears before index 3
+	--]]
+
+
+	for i=1, #t do
+		if f == t[i] then
+			return i
+		end
+	end
+	
+end
 
 function util.score(q, i)
 	if q < i then
@@ -25,7 +43,7 @@ function util.rankings(teams, rank)
 		outRank[i] = s
 	end
 	for i, v in ipairs(outRank) do --probably not needed
-		outRank[i] -= 1
+		outRank[i] = outRank[i] - 1
 	end
 	return outRank
 end
@@ -36,8 +54,8 @@ function util.teamRating(game_, options)
 	for i, team in ipairs(game_) do
 		local mu, sigma = 0, 0
 		for _, v in ipairs(team) do
-			mu += v.mu
-			sigma += v.sigma ^ 2
+			mu = mu + v.mu
+			sigma = sigma + v.sigma ^ 2
 		end
 		table.insert(result, {mu, sigma, team, rank[i]})
 	end
@@ -68,7 +86,7 @@ function util.c(teamRatings, options)
 	local betaSq = constants.betaSq(options)
 	local teamSigmaSq = 0
 	for _, v in ipairs(teamRatings) do
-		teamSigmaSq += v[2] + betaSq
+		teamSigmaSq = teamSigmaSq + v[2] + betaSq
 	end
 	return math.sqrt(teamSigmaSq)
 end
@@ -79,7 +97,7 @@ function util.sumQ(teamRatings, c)
 		local sum = 0
 		for _, i in ipairs(teamRatings) do
 			if i[4] >= q[4] then
-				sum += math.exp(i[1] / c)
+				sum = sum + math.exp(i[1] / c)
 			end
 		end
 		table.insert(result, sum)
@@ -115,14 +133,14 @@ function util.gamma(c, sigmaSq, options)
 end
 
 --https://www.npmjs.com/package/sort-unwind
-function util.unwind(t:{any},order:{number}):({any},{number})
+function util.unwind(t, order)
 	local sorted, tenet, newOrder = {}, {}, {}
 	local handledIndexes = {}
 	for i = 1, #order do
 		local nextLowest = math.huge
 		local index
 		for idx, v in ipairs(order) do
-			if not table.find(handledIndexes, idx) then
+			if not util.table_find(handledIndexes, idx) then
 				if v < nextLowest then
 					nextLowest = v
 					index = idx
